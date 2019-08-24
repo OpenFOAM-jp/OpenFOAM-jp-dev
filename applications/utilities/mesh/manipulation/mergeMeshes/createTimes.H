@@ -10,7 +10,26 @@
         masterCaseName
     );
     runTimeMaster.functionObjects().off();
+    
+	PtrList<Time> runTimesToAdd(addCases.size());
+	forAll(addCases, i)
+	{
+		const fileName addCasePath = addCases[i].path();
+		const fileName addCaseName = addCases[i].name();
 
+		runTimesToAdd.set
+		(
+			i,
+			new Time
+			(
+				Time::controlDictName,
+				addCasePath,
+				addCaseName
+			)
+		);
+		runTimesToAdd[i].functionObjects().off();
+	}
+    /*
     const fileName addCasePath = addCase.path();
     const fileName addCaseName = addCase.name();
 
@@ -21,3 +40,4 @@
         addCaseName
     );
     runTimeToAdd.functionObjects().off();
+    */
