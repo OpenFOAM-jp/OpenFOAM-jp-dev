@@ -1,0 +1,39 @@
+sudo: required
+dist: bionic
+language: Rust
+addons:
+  apt:
+    update: true
+    packages:
+    - git-core
+    - build-essential
+    - cmake
+    - libfl-dev
+    - bison
+    - zlib1g-dev
+    - gnuplot
+    - libreadline-dev
+    - libncurses-dev
+    - libxt-dev
+    - libopenmpi-dev
+    - openmpi-bin
+    - libboost-system-dev
+    - libboost-thread-dev
+    - libgmp-dev
+    - libmpfr-dev
+    - libcgal-dev
+    - curl
+before_install:
+- source etc/bashrc
+- pushd ~
+- git clone https://github.com/kurenaif/auto_wmake.git
+- cd auto_wmake
+- cargo build
+addons:
+  apt:
+    update: true
+script:
+- cd ~
+- cargo run mergeMeshes
+after_success:
+- echo "Success!!"
