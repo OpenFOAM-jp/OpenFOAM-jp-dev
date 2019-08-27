@@ -1,33 +1,22 @@
 sudo: required
 dist: bionic
 language: Rust
+before_install:
+#- mkdir -p ~/.ssh
+#- touch ~/.ssh/id_rsa
+#- chmod 600 ~/.ssh/id_rsa
+#- openssl aes-256-cbc -K $encrypted_b66af6951016_key -iv $encrypted_b66af6951016_iv -in .secrets/key.enc -out ~/.ssh/id_rsa -d
+#- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- sudo apt-get install -y --no-install-recommends git-core build-essential cmake libfl-dev bison zlib1g-dev qt4-dev-tools libqt4-dev libqtwebkit-dev gnuplot \
+libreadline-dev libncurses-dev libxt-dev libopenmpi-dev openmpi-bin libboost-system-dev libboost-thread-dev libgmp-dev \
+libmpfr-dev python python-dev libcgal-dev curl
 addons:
   apt:
     update: true
-    packages:
-    - git-core
-    - build-essential
-    - cmake
-    - libfl-dev
-    - bison
-    - zlib1g-dev
-    - gnuplot
-    - libreadline-dev
-    - libncurses-dev
-    - libxt-dev
-    - libopenmpi-dev
-    - openmpi-bin
-    - libboost-system-dev
-    - libboost-thread-dev
-    - libgmp-dev
-    - libmpfr-dev
-    - libcgal-dev
-    - curl
-before_install:
+script:before_install:
 - source etc/bashrc
-- pushd ~
-- git clone https://github.com/kurenaif/auto_wmake.git
-- cd auto_wmake
+- git clone https://github.com/kurenaif/auto_wmake.git ../auto_wmake
+- cd ../auto_wmake
 - cargo build
 addons:
   apt:
