@@ -57,6 +57,7 @@ void getRootCase(fileName& casePath)
 
 int main(int argc, char *argv[])
 {
+    Info << "This is a test message to check CI." << endl;
     argList::addNote
     (
         "Merges some meshes.\nSecond 'addCase' can be ignored."
